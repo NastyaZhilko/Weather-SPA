@@ -1,0 +1,27 @@
+.main{
+}
+.city{
+    text-align: left;
+    color: white;
+    height: 50px;
+    padding: 0 0 0 1rem;
+    font-size: 20px;
+}
+.temp{
+    padding: 2rem 0 0 1rem;
+    font-size: 40px;
+    color: white;
+}
+.date{
+    padding: 2rem 0 0 1rem;
+    color: white;
+}
+.temp{
+    width: 9rem;
+    padding: 2rem 0;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3)
+}
+

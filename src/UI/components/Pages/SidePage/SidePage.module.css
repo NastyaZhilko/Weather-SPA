@@ -1,0 +1,25 @@
+.container{
+    background: linear-gradient(45deg, #6495ed, #222264 80%) no-repeat;
+    max-width: 100%;
+    min-height: 100vh;
+}
+.form{
+    text-align: center;
+}
+.location{
+    text-align: center;
+}
+.longTermForecast{
+    text-align: center;
+background: #6495ed;
+}
+
+.hourlyForecast{
+    background: cadetblue;
+    text-align: center;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center!important;
+}

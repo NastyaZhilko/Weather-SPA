@@ -1,0 +1,18 @@
+
+.card {
+    width: 12rem;
+    padding: 2rem 0;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+}
+.card div{
+    padding: 0.1rem 0;
+}
+.card button{
+    min-width: 80%;
+    background: #3a7999;
+}
