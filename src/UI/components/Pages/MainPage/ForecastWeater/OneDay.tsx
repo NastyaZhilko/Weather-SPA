@@ -1,14 +1,15 @@
 import React, {FC} from "react";
-import style from "../MainPage/WeatherFor4Days/Card.module.css"
+import style from "./OneDay.module.css"
+import {WeatherIcon} from "../../../WeatherIcon/WeatherIcon";
 
 type PropsType = {
-    date: string
     temp: number
     description: string
     ts: number
+    icon: string
 }
 
-export const OneDay: FC<PropsType> = ({date, temp, description, ts}) => {
+export const OneDay: FC<PropsType> = React.memo (({temp, description, ts, icon}) => {
     const ms = ts * 1000;
     const weekdayName = new Date(ms).toLocaleString('eng', {weekday: 'long'})
     const dateName = new Date(ms).toLocaleString('eng', {year: 'numeric', month: 'long', day: 'numeric', })
@@ -17,8 +18,9 @@ export const OneDay: FC<PropsType> = ({date, temp, description, ts}) => {
             <div className={style.weekdayName}>{dateName}</div>
             <div className={style.weekdayName}>{weekdayName}</div>
             <div className={style.weekdayName}>{temp>0 ? `+${temp} °C` : `${temp} °C`}</div>
-            <button>{description}</button>
+            <div><WeatherIcon code={icon}/></div>
+            <div>{description}</div>
 
         </div>
     )
-}
+})

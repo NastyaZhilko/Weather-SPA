@@ -9,28 +9,28 @@
     padding: 2rem 0;
     display: flex;
 }
-.currentWeather{
+
+.currentWeather {
     width: 50%;
 }
+
 .cardsBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
-
-
 }
-.block span{
+
+.block span {
     font-size: 20px;
 }
-.cards{
+
+.cards {
     display: flex;
     align-items: center;
     justify-content: center
 }
-.title{
 
-}
 
 .buttons {
     display: flex;
@@ -40,6 +40,7 @@
     width: 30%;
     color: white;
 }
+
 button {
     min-width: 80%;
     font-family: Roboto, sans-serif;
@@ -61,7 +62,34 @@ button {
 
 
 button:hover {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     color: white;
     box-shadow: inset 0 0 0 3px #3a7999;
+}
+
+.link {
+    padding: 2rem 0 0 1rem;
+    font-size: 20px;
+}
+
+.inactive {
+    color: #fff;
+
+}
+
+.active {
+    margin-right: 10px;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+
+.active:hover {
+    color: #fff;
+    text-decoration: none;
+
+}
+img{
+    width: 100px;
+    height: 100px;
 }
