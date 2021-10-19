@@ -40,13 +40,13 @@ export const CurrentWeather: FC<PropsType> = React.memo(
                 </div>
 
                 <div className={style.twoBlock}>
-                    <div className={style.partBlock}>
+                    <div className={style.partOneBlock}>
                         <div>Wind speed</div>
                         <div>Clouds</div>
                         <div>Pressure</div>
-                        <div>Direction of the wind</div>
+                        <div>Direction of wind</div>
                     </div>
-                    <div className={style.partBlock}>
+                    <div className={style.partTwoBlock}>
                         <div>{Math.round(wind_spd)}m/s</div>
                         <div>{clouds} %</div>
                         <div>{pressure} mb </div>

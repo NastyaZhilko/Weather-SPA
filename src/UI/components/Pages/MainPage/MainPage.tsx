@@ -78,7 +78,6 @@ export const MainPage = () => {
                     <div className={style.cardsBlock}>
                         <h3>Three days forecast</h3>
                         <div className={style.cards}>
-
                             {forecast.map((day, index) => (
                                 <OneDay
                                     key={index}

@@ -3,24 +3,24 @@
     max-width: 100%;
     min-height: 100vh;
     color: white;
+    padding: 2rem 12rem;
 
 }
 
 .selectCity {
-    padding: 2rem 6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .currentWeather {
-    margin: 2rem 6rem;
+    padding: 2rem 0;
 }
 
 
 .cardsBlock {
     background-color: rgba(0, 0, 0, 0.4);
-    margin: 2rem 6rem 0;
+    margin: 2rem 0;
     padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 10px 30px #535354;
@@ -38,9 +38,8 @@
 }
 
 .cards {
-    width: 100%;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -89,4 +88,16 @@ a{
 img {
     width: 100px;
     height: 100px;
+}
+
+@media screen and (max-width: 1120px){
+    .block{
+        padding: 1rem
+    }
+    .cardsBlock{
+        align-items: center;
+    }
+    .cards{
+        justify-content: center;
+    }
 }

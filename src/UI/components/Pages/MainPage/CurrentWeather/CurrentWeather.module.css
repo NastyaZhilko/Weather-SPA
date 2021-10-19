@@ -13,20 +13,22 @@
 .twoBlock {
     min-width: 50%;
     display: flex;
-    justify-content: space-around;
-    align-items: end;
+    align-items: flex-end;
     font-size: 18px;
 }
-.partBlock {
+.partOneBlock {
     min-width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: start;
     line-height: 180%;
 }
 
-
+ .partTwoBlock{
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    line-height: 180%;
+}
 .city {
     text-align: left;
     color: white;
@@ -46,4 +48,23 @@
 
 h3{
     margin: 0 0 1rem 0;
+}
+
+@media screen and (max-width: 1024px){
+    .main{
+        flex-direction: column;
+    }
+    .oneBlock{
+        min-width: 100%;
+    }
+    .twoBlock {
+        min-width: 100%;
+        padding-left: 1rem;
+    }
+    .partOneBlock {
+        min-width: 60%;
+    }
+    .partTwoBlock{
+        min-width: 40%;
+    }
 }

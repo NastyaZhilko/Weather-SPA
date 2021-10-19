@@ -9,7 +9,7 @@ import {
     getHourlyForecastWeatherTC,
     searchedCityAC
 } from "../../../../BLL/weatherReducer";
-import {Link, NavLink, useHistory, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {HourlyForecast} from "./HourlyForecast/Hourly";
 import {Preloader} from "../../Preloader/preloader";
 
