@@ -91,13 +91,13 @@ input:focus:invalid {
     flex-direction: column;
 }
 
-h3{
+.block h3{
     margin: 0 0 1rem 1rem;
 }
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center !important;
+    justify-content: space-between;
 }
 
 .error {
