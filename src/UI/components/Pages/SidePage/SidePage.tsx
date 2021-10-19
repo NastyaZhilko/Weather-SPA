@@ -30,15 +30,15 @@ export const SidePage = () => {
     const [inputError, setInputError] = useState<boolean>(false)
 
     useEffect(() => {
-        dispatch(getHourlyForecastWeatherTC(cityName))
-    }, [dispatch, cityName])
+        dispatch(getHourlyForecastWeatherTC(cityName, country))
+    }, [dispatch, cityName, country])
 
     useEffect(() => {
-        dispatch(getForecastWeatherTC(cityName))
-    }, [dispatch, cityName])
+        dispatch(getForecastWeatherTC(cityName, country))
+    }, [dispatch, cityName, country])
 
     const getWeather = () => {
-        dispatch(searchedCityAC(value))
+        dispatch(searchedCityAC(value, ''))
         history.push(`/in/${value}`)
         setValue('')
     }

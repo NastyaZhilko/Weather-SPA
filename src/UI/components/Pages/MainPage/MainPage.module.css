@@ -78,11 +78,18 @@ button:active {
 }
 
 .link button{
-    width: 360px;
+    width: auto;
+}
+.link button:hover{
+    background: rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0);
 }
 a{
     text-decoration: none;
     color: white
+}
+a:hover{
+    text-decoration: underline;
 }
 
 img {

@@ -11,13 +11,13 @@ export const api = {
         return instance
             .get<CurrentWeatherResponseType>(`/current?&city=${cityName},${country}&key=${API_KEY}`)
     },
-    getForecastWeather(cityName: string) {
+    getForecastWeather(cityName: string, country: string) {
         return instance
-            .get<ForecastResponseType>(`/forecast/daily?city=${cityName}&key=${API_KEY}`)
+            .get<ForecastResponseType>(`/forecast/daily?city=${cityName},${country}&key=${API_KEY}`)
     },
-    getHourlyForecastWeather(cityName: string){
+    getHourlyForecastWeather(cityName: string, country: string){
         return instance
-            .get<HourlyForecastResponseType>(`/forecast/hourly?city=${cityName}&key=${API_KEY}&hours=10`)
+            .get<HourlyForecastResponseType>(`/forecast/hourly?city=${cityName},${country}&key=${API_KEY}&hours=10`)
     }
 
 }

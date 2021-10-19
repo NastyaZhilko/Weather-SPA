@@ -5,7 +5,7 @@ import {restoreState, saveValue} from "../LocalStorage/LocalStorage";
 
 type InitialStateType = {
     error: string | null,
-    city: string,
+    city: string ,
     country: string,
     currentWeather: ItemType[],
     forecast: OneDayType[],
@@ -57,7 +57,8 @@ export const currentWeatherReducer = (state: InitialStateType = initialState, ac
         case 'APP/SEARCHED-CITY': {
             return {
                 ...state,
-                city: action.inputValueSearch
+                city: action.inputValueSearch,
+                country: action.country
             }
         }
         case 'APP/DISABLED_BUTTON': {
@@ -100,8 +101,8 @@ export const setCurrentWeatherAC = (weather: ItemType[]) =>
 export const setHourlyWeatherAC = (weather: OneHourType[], country: string) =>
     ({type: 'APP/SET_HOURLY_FORECAST_WEATHER', weather, country} as const)
 
-export const searchedCityAC = (inputValueSearch: string) =>
-    ({type: 'APP/SEARCHED-CITY', inputValueSearch,} as const)
+export const searchedCityAC = (inputValueSearch: string, country: string) =>
+    ({type: 'APP/SEARCHED-CITY', inputValueSearch, country} as const)
 
 export const disabledButtonAC = (disabled: boolean) =>
     ({type: 'APP/DISABLED_BUTTON', disabled,} as const)
@@ -124,10 +125,10 @@ export const getCurrentWeatherTC = (cityName: string, country: string) => async 
     }
 }
 
-export const getThreeDayForecastTC = (cityName: string) => async (dispatch: Dispatch) => {
+export const getThreeDayForecastTC = (cityName: string, country: string) => async (dispatch: Dispatch) => {
     try {
         dispatch(setIsFetchingAC(true))
-        const response = await api.getForecastWeather(cityName);
+        const response = await api.getForecastWeather(cityName, country);
         const forecastData = response.data.data.slice(1, 4)
         dispatch(setForecastWeatherAC(forecastData))
     } catch (error) {
@@ -137,10 +138,10 @@ export const getThreeDayForecastTC = (cityName: string) => async (dispatch: Disp
     }
 }
 
-export const getForecastWeatherTC = (cityName: string) => async (dispatch: Dispatch) => {
+export const getForecastWeatherTC = (cityName: string, country: string) => async (dispatch: Dispatch) => {
     try {
         dispatch(disabledButtonAC(true))
-        const response = await api.getForecastWeather(cityName);
+        const response = await api.getForecastWeather(cityName, country);
         const forecastData = response.data.data.slice(1, 11)
         dispatch(setForecastWeatherAC(forecastData))
         dispatch(disabledButtonAC(false))
@@ -152,14 +153,14 @@ export const getForecastWeatherTC = (cityName: string) => async (dispatch: Dispa
 
 }
 
-export const getHourlyForecastWeatherTC = (cityName: string) => async (dispatch: Dispatch) => {
+export const getHourlyForecastWeatherTC = (cityName: string, country: string) => async (dispatch: Dispatch) => {
     dispatch(setIsFetchingAC(true))
     try {
         dispatch(disabledButtonAC(true))
-        const response = await api.getHourlyForecastWeather(cityName);
+        const response = await api.getHourlyForecastWeather(cityName, country);
         const hourlyData = response.data.data
-        const country = response.data.country_code
-        dispatch(setHourlyWeatherAC(hourlyData, country))
+        const countryCode = response.data.country_code
+        dispatch(setHourlyWeatherAC(hourlyData, countryCode))
         dispatch(setIsFetchingAC(false))
     } catch (error) {
         dispatch(errorDetectedAC('Incorrect city name. Please try again!'))
