@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import style from "./MainPage.module.css"
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {CurrentWeather} from "./CurrentWeather/CurrentWeather";
 import {AppStateType} from "../../../../BLL/store";
@@ -44,39 +44,39 @@ export const MainPage = () => {
     return (
         <>
             {isFetching ? <Preloader/>
-            :
+                :
                 <div className={style.block}>
-                    <div className={style.container}>
-                        <div className={style.currentWeather}>
-                            {currentWeather.map((current, index) => <CurrentWeather
-                                    key={index}
-                                    temp={current.temp}
-                                    name={name}
-                                    country={country}
-                                    ts={current.ts}
-                                    wind_spd={current.wind_spd}
-                                    description={current.weather.description}
-                                    clouds={current.clouds}
-                                    icon={current.weather.icon}
-                                />
-                            )}
-                        </div>
+                    <div className={style.selectCity}>
+                        <button onClick={onClickHandlerMinsk}>Minsk</button>
+                        <button onClick={onClickHandlerMoscow}>Moscow</button>
+                        <button onClick={onClickHandlerBratislava}>Bratislava</button>
+                    </div>
+                    <div className={style.currentWeather}>
 
-                        <div className={style.buttons}>
-                            <span>Select city</span>
-                            <button onClick={onClickHandlerMinsk}>Minsk</button>
-                            <button onClick={onClickHandlerMoscow}>Moscow</button>
-                            <button onClick={onClickHandlerBratislava}>Bratislava</button>
-                        </div>
+                        {currentWeather.map((current, index) => <CurrentWeather
+                                key={index}
+                                temp={current.temp}
+                                name={name}
+                                country={country}
+                                ts={current.ts}
+                                wind_spd={current.wind_spd}
+                                description={current.weather.description}
+                                clouds={current.clouds}
+                                icon={current.weather.icon}
+                                pressure={current.pres}
+                                wind_cdir_full={current.wind_cdir_full}
+                            />
+                        )}
                     </div>
                     <div className={style.link}>
-                        <NavLink className={style.inactive} activeClassName={style.active}
-                                 to={`/in/${name}`}>
-                            Ten days forecast and hourly forecast
-                        </NavLink>
+                        <button>
+                            <Link to={`/in/${name}`}>
+                                Ten days forecast and hourly forecast
+                            </Link>
+                        </button>
                     </div>
                     <div className={style.cardsBlock}>
-                        <span>Three days forecast</span>
+                        <h3>Three days forecast</h3>
                         <div className={style.cards}>
 
                             {forecast.map((day, index) => (

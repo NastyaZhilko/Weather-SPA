@@ -9,7 +9,7 @@ import {
     getHourlyForecastWeatherTC,
     searchedCityAC
 } from "../../../../BLL/weatherReducer";
-import {NavLink, useHistory, useParams} from "react-router-dom";
+import {Link, NavLink, useHistory, useParams} from "react-router-dom";
 import {HourlyForecast} from "./HourlyForecast/Hourly";
 import {Preloader} from "../../Preloader/preloader";
 
@@ -20,6 +20,7 @@ export const SidePage = () => {
     const dispatch = useDispatch()
 
     const name = useSelector<AppStateType, string>(state => state.weather.city)
+    const country = useSelector<AppStateType, string>(state => state.weather.country)
     const forecast = useSelector<AppStateType, OneDayType[]>(state => state.weather.forecast)
     const hours = useSelector<AppStateType, OneHourType[]>(state => state.weather.hours)
     const error = useSelector<AppStateType, string | null>(state => state.weather.error)
@@ -65,7 +66,7 @@ export const SidePage = () => {
         <>
             {isFetching ? <Preloader/>
                 :
-                <div className={style.container}>
+                <div className={style.main}>
                     <div className={style.form}>
                         <input type="text"
                                name="city"
@@ -80,22 +81,24 @@ export const SidePage = () => {
                                 onClick={getWeather}>
                             Get weather
                         </button>
-                        {inputError && <div style={{color: 'red', fontSize: '18px'}}>
+                        {inputError && <div style={{color: 'yellow', fontSize: '18px'}}>
                             Use latin letters!
                         </div>}
                     </div>
                     {hours ?
                         <div>
                             <div className={style.location}>
-                                <span>{name}</span>
+                                <span>{name}, {country}</span>
                                 <div className={style.link}>
-                                    <NavLink className={style.inactive} activeClassName={style.active} to={`/main`}>
-                                        Current weather
-                                    </NavLink>
+                                    <button>
+                                        <Link to={`/main`}>
+                                            Current weather
+                                        </Link>
+                                    </button>
                                 </div>
                             </div>
-                            <div className={style.block}>
-                                <div className={style.longTermForecast}>
+                            <div className={style.container}>
+                                <div className={style.block}>
                                     <h3>Ten days forecast</h3>
                                     <div className={style.cards}>
                                         {forecast.map((day, index) => (
@@ -110,7 +113,7 @@ export const SidePage = () => {
                                         }
                                     </div>
                                 </div>
-                                <div className={style.hourlyForecast}>
+                                <div className={style.block}>
                                     <h3>Hourly forecast</h3>
                                     <div className={style.cards}>
                                         {hours.map((hour, index) => (

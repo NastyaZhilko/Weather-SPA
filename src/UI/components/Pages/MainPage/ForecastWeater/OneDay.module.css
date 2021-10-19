@@ -3,9 +3,8 @@
     width: 12rem;
     padding: 2rem 0;
     margin: 1rem;
-    border: 1px solid #ccc;
+    background: linear-gradient(45deg, #6495ed, #222264 80%) no-repeat;
     border-radius: 5px;
-    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
 
 }

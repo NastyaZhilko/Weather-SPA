@@ -14,6 +14,7 @@ export const OneDay: FC<PropsType> = React.memo (({temp, description, ts, icon})
     const weekdayName = new Date(ms).toLocaleString('eng', {weekday: 'long'})
     const dateName = new Date(ms).toLocaleString('eng', {year: 'numeric', month: 'long', day: 'numeric', })
     return (
+
         <div className={style.card}>
             <div className={style.weekdayName}>{dateName}</div>
             <div className={style.weekdayName}>{weekdayName}</div>
