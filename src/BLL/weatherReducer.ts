@@ -118,7 +118,6 @@ export const getCurrentWeatherTC = (cityName: string, country: string) => async 
     try {
         dispatch(setIsFetchingAC(true))
         const response = await api.getCurrentWeather(cityName, country);
-        debugger
         dispatch(setCurrentWeatherAC(response.data.data))
     } catch (error) {
         dispatch(errorDetectedAC('Error'))
@@ -131,7 +130,6 @@ export const getThreeDayForecastTC = (cityName: string, country: string) => asyn
     try {
         dispatch(setIsFetchingAC(true))
         const response = await api.getForecastWeather(cityName, country);
-        debugger
         const forecastData = response.data.data.slice(1, 4)
         const countryCode = response.data.country_code
         dispatch(setForecastWeatherAC(forecastData, countryCode))
@@ -146,7 +144,6 @@ export const getForecastWeatherTC = (cityName: string, country: string) => async
     try {
         dispatch(disabledButtonAC(true))
         const response = await api.getForecastWeather(cityName, country);
-        debugger
         const forecastData = response.data.data.slice(1, 11)
         const countryCode = response.data.country_code
         dispatch(setForecastWeatherAC(forecastData, countryCode))
@@ -164,7 +161,6 @@ export const getHourlyForecastWeatherTC = (cityName: string, country: string) =>
     try {
         dispatch(disabledButtonAC(true))
         const response = await api.getHourlyForecastWeather(cityName, country);
-        debugger
         const hourlyData = response.data.data
         const countryCode = response.data.country_code
         dispatch(setHourlyWeatherAC(hourlyData, countryCode))

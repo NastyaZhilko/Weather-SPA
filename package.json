@@ -1,5 +1,6 @@
 {
   "name": "weather",
+  "homepage": "https://nastyazhilko.github.io/Weather-SPA/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
