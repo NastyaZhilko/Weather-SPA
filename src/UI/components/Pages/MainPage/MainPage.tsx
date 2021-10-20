@@ -21,8 +21,8 @@ export const MainPage = () => {
     const [valueCountry, setValueCountry] = useState<string>(country)
 
     useEffect(() => {
-        dispatch(getThreeDayForecastTC(value, country))
-    }, [dispatch, value, country])
+        dispatch(getThreeDayForecastTC(value, valueCountry))
+    }, [dispatch, value, valueCountry])
 
 
     useEffect(() => {
