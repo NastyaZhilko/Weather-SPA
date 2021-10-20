@@ -51,7 +51,8 @@ export const currentWeatherReducer = (state: InitialStateType = initialState, ac
             return {
                 ...state,
                 hours: action.weather,
-                country: action.country
+                country: action.country,
+                city: action.city
 
             }
 
@@ -99,8 +100,8 @@ export const setForecastWeatherAC = (dailyData: OneDayType[], country: string) =
 export const setCurrentWeatherAC = (weather: ItemType[]) =>
     ({type: 'APP/SET_CURRENT_WEATHER', weather} as const)
 
-export const setHourlyWeatherAC = (weather: OneHourType[], country: string) =>
-    ({type: 'APP/SET_HOURLY_FORECAST_WEATHER', weather, country} as const)
+export const setHourlyWeatherAC = (weather: OneHourType[], country: string, city: string) =>
+    ({type: 'APP/SET_HOURLY_FORECAST_WEATHER', weather, country, city} as const)
 
 export const searchedCityAC = (inputValueSearch: string, country: string) =>
     ({type: 'APP/SEARCHED-CITY', inputValueSearch, country} as const)
@@ -163,7 +164,8 @@ export const getHourlyForecastWeatherTC = (cityName: string, country: string) =>
         const response = await api.getHourlyForecastWeather(cityName, country);
         const hourlyData = response.data.data
         const countryCode = response.data.country_code
-        dispatch(setHourlyWeatherAC(hourlyData, countryCode))
+        const city = response.data.city_name
+        dispatch(setHourlyWeatherAC(hourlyData, countryCode, city))
         dispatch(setIsFetchingAC(false))
     } catch (error) {
         dispatch(errorDetectedAC('Incorrect city name. Please try again!'))

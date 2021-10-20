@@ -3,11 +3,11 @@ import style from "./MainPage.module.css"
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {CurrentWeather} from "./CurrentWeather/CurrentWeather";
-import {AppStateType} from "../../../../BLL/store";
-import {getCurrentWeatherTC, getThreeDayForecastTC} from "../../../../BLL/weatherReducer";
-import {ItemType, OneDayType} from "../../../../DAL/Api";
+import {AppStateType} from "../../../BLL/store";
+import {getCurrentWeatherTC, getThreeDayForecastTC} from "../../../BLL/weatherReducer";
+import {ItemType, OneDayType} from "../../../DAL/Api";
 import {OneDay} from "./ForecastWeater/OneDay";
-import {Preloader} from "../../Preloader/preloader";
+import {Preloader} from "../../components/Preloader/preloader";
 
 export const MainPage = () => {
     const name = useSelector<AppStateType, string>(state => state.weather.city)
@@ -22,12 +22,12 @@ export const MainPage = () => {
 
     useEffect(() => {
         dispatch(getThreeDayForecastTC(value, valueCountry))
-    }, [dispatch, value, valueCountry])
+    }, [value, valueCountry])
 
 
     useEffect(() => {
         dispatch(getCurrentWeatherTC(value, valueCountry))
-    }, [dispatch, value, valueCountry])
+    }, [value, valueCountry])
 
     const onClickHandlerMoscow = () => {
         setValue('Moscow')

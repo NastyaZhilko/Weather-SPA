@@ -1,17 +1,18 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 import style from "./SidePage.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../../BLL/store";
-import {OneHourType, OneDayType} from "../../../../DAL/Api";
+import {AppStateType} from "../../../BLL/store";
+import {OneHourType, OneDayType} from "../../../DAL/Api";
 import {OneDay} from "../MainPage/ForecastWeater/OneDay";
 import {
     getForecastWeatherTC,
     getHourlyForecastWeatherTC,
     searchedCityAC
-} from "../../../../BLL/weatherReducer";
+} from "../../../BLL/weatherReducer";
 import {Link, useHistory, useParams} from "react-router-dom";
 import {HourlyForecast} from "./HourlyForecast/Hourly";
-import {Preloader} from "../../Preloader/preloader";
+import {Preloader} from "../../components/Preloader/preloader";
+import {Search} from "../../components/Search/Search";
 
 export const SidePage = () => {
 
@@ -31,17 +32,17 @@ export const SidePage = () => {
 
     useEffect(() => {
         dispatch(getHourlyForecastWeatherTC(cityName, country))
-    }, [dispatch, cityName, country])
+    }, [cityName, country])
 
     useEffect(() => {
         dispatch(getForecastWeatherTC(cityName, country))
-    }, [dispatch, cityName, country])
+    }, [cityName, country])
 
-    const getWeather = () => {
+    const getWeather = useCallback(() => {
         dispatch(searchedCityAC(value, ''))
         history.push(`/in/${value}`)
         setValue('')
-    }
+    },[value])
 
     const changeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
@@ -67,24 +68,13 @@ export const SidePage = () => {
             {isFetching ? <Preloader/>
                 :
                 <div className={style.main}>
-                    <div className={style.form}>
-                        <input type="text"
-                               name="city"
-                               placeholder="City name"
-                               title="Use latin letters!"
-                               pattern="^[a-zA-Z\s]+$"
-                               onBlur={inputFieldError}
-                               value={value}
-                               onChange={changeInput}
-                        />
-                        <button className={style.btn} disabled={!value || inputError}
-                                onClick={getWeather}>
-                            Get weather
-                        </button>
-                        {inputError && <div style={{color: 'yellow', fontSize: '18px'}}>
-                            Use latin letters!
-                        </div>}
-                    </div>
+                    <Search
+                        inputFieldError={inputFieldError}
+                        value={value}
+                        changeInput={changeInput}
+                        inputError={inputError}
+                        getWeather={getWeather}
+                    />
                     {hours ?
                         <div>
                             <div className={style.location}>

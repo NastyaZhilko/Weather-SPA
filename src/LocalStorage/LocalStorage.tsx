@@ -7,5 +7,5 @@ export const saveValue=(city: string, country: string)=>{
 }
 export const restoreState=()=>{
     let obj=localStorage.getItem('city')
-    return obj ? JSON.parse(obj):{'saveCity':null, 'saveCountry': null}
+    return obj ? JSON.parse(obj):{'saveCity':'Minsk', 'saveCountry': 'BY'}
 }
