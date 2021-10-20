@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from "react";
-import style from "../../Pages/SidePage/SidePage.module.css";
+import style from "../../pages/SidePage/SidePage.module.css";
 
 type PropsType = {
     inputFieldError: (e: ChangeEvent<HTMLInputElement>) => void

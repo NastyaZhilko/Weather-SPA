@@ -1,8 +1,8 @@
 import React from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
-import { Error404 } from "../Pages/404/404";
-import {MainPage} from "../Pages/MainPage/MainPage";
-import {SidePage} from "../Pages/SidePage/SidePage";
+import { Error404 } from "../pages/404/404";
+import {MainPage} from "../pages/MainPage/MainPage";
+import {SidePage} from "../pages/SidePage/SidePage";
 
 export const Routes = () => {
 

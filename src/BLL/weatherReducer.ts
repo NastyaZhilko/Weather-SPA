@@ -3,7 +3,7 @@ import {api, ItemType, OneDayType, OneHourType} from "../DAL/Api";
 import {restoreState, saveValue} from "../LocalStorage/LocalStorage";
 
 
-type InitialStateType = {
+export type InitialStateType = {
     error: string | null,
     city: string ,
     country: string,
@@ -37,7 +37,8 @@ export const currentWeatherReducer = (state: InitialStateType = initialState, ac
             return {
                 ...state,
                 forecast: action.dailyData,
-                country: action.country
+                country: action.country,
+                city: action.city
             }
         case 'APP/SET_CURRENT_WEATHER':
             const stateCopy = {...state}
@@ -94,8 +95,8 @@ type ActionsTypes = ReturnType<typeof errorDetectedAC>
 export const errorDetectedAC = (error: string | null) =>
     ({type: 'APP/ERROR_DETECTED', error} as const)
 
-export const setForecastWeatherAC = (dailyData: OneDayType[], country: string) =>
-    ({type: 'APP/SET_FORECAST_WEATHER', dailyData, country} as const)
+export const setForecastWeatherAC = (dailyData: OneDayType[], country: string, city: string) =>
+    ({type: 'APP/SET_FORECAST_WEATHER', dailyData, country, city} as const)
 
 export const setCurrentWeatherAC = (weather: ItemType[]) =>
     ({type: 'APP/SET_CURRENT_WEATHER', weather} as const)
@@ -133,7 +134,8 @@ export const getThreeDayForecastTC = (cityName: string, country: string) => asyn
         const response = await api.getForecastWeather(cityName, country);
         const forecastData = response.data.data.slice(1, 4)
         const countryCode = response.data.country_code
-        dispatch(setForecastWeatherAC(forecastData, countryCode))
+        const city = response.data.city_name
+        dispatch(setForecastWeatherAC(forecastData, countryCode, city))
     } catch (error) {
         dispatch(errorDetectedAC('Error'))
     } finally {
@@ -147,7 +149,8 @@ export const getForecastWeatherTC = (cityName: string, country: string) => async
         const response = await api.getForecastWeather(cityName, country);
         const forecastData = response.data.data.slice(1, 11)
         const countryCode = response.data.country_code
-        dispatch(setForecastWeatherAC(forecastData, countryCode))
+        const city = response.data.city_name
+        dispatch(setForecastWeatherAC(forecastData, countryCode, city))
         dispatch(disabledButtonAC(false))
     } catch (error) {
         dispatch(errorDetectedAC('Incorrect city name. Please try again!'))
